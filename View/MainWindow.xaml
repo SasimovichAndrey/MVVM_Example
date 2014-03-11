@@ -1,0 +1,27 @@
+﻿<Window x:Class="MVVM_Example.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="300">
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+    <Grid Name="MainWindowGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" Command="{Binding Path=CloseCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Edit" />
+            <MenuItem Header="_Options" />
+            <MenuItem Header="_Help" />
+        </Menu>
+        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=Commands}" ItemTemplate="{StaticResource ResourceKey=CommandsTemplate}"/>
+    </Grid>
+</Window>

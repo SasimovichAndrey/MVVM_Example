@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
+using System.Diagnostics;
+
 namespace MVVM_Example.ViewModel
 {
-    abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        public string DisplayName { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -31,11 +35,7 @@ namespace MVVM_Example.ViewModel
             if (TypeDescriptor.GetProperties(this)[propertyName] == null)
             {
                 string msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                    throw new Exception(msg);
-                else
-                    Debug.Fail(msg);
+                Debug.Fail(msg);
             }
         }
     }

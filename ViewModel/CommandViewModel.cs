@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MVVM_Example.Command;
+using System.Windows.Input;
 
 namespace MVVM_Example.ViewModel
 {
-    class CommandViewModel : ViewModelBase
+    public class CommandViewModel : ViewModelBase
     {
         public CommandViewModel(string displayName, ICommand command)
         {

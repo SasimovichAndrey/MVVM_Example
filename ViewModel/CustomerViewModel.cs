@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MVVM_Example.Command;
+using System.Windows.Input;
 
 namespace MVVM_Example.ViewModel
 {
-    class CustomerViewModel : WorkSpaceViewModel
+    class CustomerViewModel : WorkspaceViewModel
     {
         RelayCommand _saveCommand;
 
@@ -14,11 +15,11 @@ namespace MVVM_Example.ViewModel
         {
             get
             {
-                if (_saveCommand == null)
-                {
-                    _saveCommand = new RelayCommand(param => this.Save(),
-                        param => this.CanSave);
-                }
+                //if (_saveCommand == null)
+                //{
+                //    _saveCommand = new RelayCommand(param => this.Save(),
+                //        param => this.CanSave);
+                //}
                 return _saveCommand;
             }
         }

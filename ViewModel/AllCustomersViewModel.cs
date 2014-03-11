@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MVVM_Example.ViewModel
 {
-    class AllCustomersViewModel : WorkSpaceViewModel
+    class AllCustomersViewModel : WorkspaceViewModel
     {
     }
 }
