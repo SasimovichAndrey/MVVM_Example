@@ -6,6 +6,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows.Input;
 using MVVM_Example.ViewModel;
+using MVVM_Example.Command;
+using MVVM_Example.Model;
+using MVVM_Example.Service;
 
 namespace MVVM_Example.ViewModel
 {
@@ -56,8 +59,11 @@ namespace MVVM_Example.ViewModel
         protected void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null && e.NewItems.Count != 0)
+            {
                 foreach (WorkspaceViewModel workspace in e.NewItems)
                     workspace.RequestClose += this.OnWorkspaceRequestClose;
+            }
+
 
             if (e.OldItems != null && e.OldItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.OldItems)
@@ -67,6 +73,33 @@ namespace MVVM_Example.ViewModel
         protected void OnWorkspaceRequestClose(object sender)
         {
             this.Workspaces.Remove(sender as WorkspaceViewModel);
+        }
+
+        public void AddNewAllCustomersWokspace(object sender)
+        {
+            CustomerDataProvider provider = new CustomerDataProvider();
+            AllCustomersViewModel model = new AllCustomersViewModel(provider){DisplayName = "All Customers"};
+            RelayCommand closeCommand = new RelayCommand(model.CloseWorkspace);
+            model.CloseCommand = closeCommand;
+
+            foreach (WorkspaceViewModel wsModel in Workspaces)
+            {
+                if (wsModel is CustomerViewModel)
+                {
+                    (wsModel as CustomerViewModel).SaveAction += model.OnNewCustomerSaveAction;
+                }
+            }
+
+            Workspaces.Add(model);
+        }
+
+        public void AddNewCustomerWorkspace(object sender)
+        {
+            CustomerViewModel model = new CustomerViewModel(new Customer() { FirstName="Sergei", Email="lalala@mail.kz"}) { DisplayName = "New Customer" };
+            RelayCommand closeCommand = new RelayCommand(model.OnCloseWorkspace);
+            model.CloseCommand = closeCommand;
+
+            Workspaces.Add(model);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:MVVM_Example.ViewModel"
-                    xmlns:vw="clr-namespace:MVVM_Example.View">
+                    xmlns:vw="clr-namespace:MVVM_Example.View"
+                    xmlns:mdl="clr-namespace:MVVM_Example.Model">
     <DataTemplate x:Key="CommandsTemplate">
         <TextBlock Margin="2,6">
             <Hyperlink Command="{Binding Path=Command}">
@@ -20,12 +21,47 @@
             <ContentPresenter Content="{Binding Path=DisplayName}" />
         </DockPanel>
     </DataTemplate>
-
-    <!--<DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
-        <vw:AllCustomersView />
+    <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
+        <ItemsControl ItemsSource="{Binding Path=Customers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type mdl:Customer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Content="{Binding Path=FirstName}"/>
+                        <Label Grid.Column="1" Content="{Binding Path=LastName}"/>
+                        <Label Grid.Column="2" Content="{Binding Path=Email}"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>        
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
-        <vw:CustomerView />
-    </DataTemplate>-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="First Name"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Last Name"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Email"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Email}"/>
+            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Save" Command="{Binding Path=SaveCommand}" HorizontalAlignment="Center" Width="100"/>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

@@ -21,24 +21,18 @@ namespace MVVM_Example
 
             MVVM_Example.View.MainWindow window = new MVVM_Example.View.MainWindow();
 
-            // Create the ViewModel to which 
-            // the main window binds.
             string path = "Data/customers.xml";
             var viewModel = new MainWindowViewModel(path);
-            CommandViewModel cvModel = new CommandViewModel("CommandName", new RelayCommand(o => {}));
-            viewModel.Commands.Add(cvModel);
+            CommandViewModel cvAllCustomerModel = new CommandViewModel("All Customers", new RelayCommand(viewModel.AddNewAllCustomersWokspace));
+            CommandViewModel cvNewCustomerModel = new CommandViewModel("New Customer", new RelayCommand(viewModel.AddNewCustomerWorkspace));
+            viewModel.Commands.Add(cvAllCustomerModel);
+            viewModel.Commands.Add(cvNewCustomerModel);
 
-            // When the ViewModel asks to be closed, 
-            // close the window.
             viewModel.RequestClose += delegate
             {
                 window.Close();
             };
 
-            // Allow all controls in the window to 
-            // bind to the ViewModel by setting the 
-            // DataContext, which propagates down 
-            // the element tree.
             window.MainWindowGrid.DataContext = viewModel;
 
             window.Show();
