@@ -22,10 +22,6 @@ namespace MVVM_Example
             MVVM_Example.View.MainWindow window = new MVVM_Example.View.MainWindow();
 
             var viewModel = new MainWindowViewModel();
-            CommandViewModel cvAllCustomerModel = new CommandViewModel("All Customers", new RelayCommand(viewModel.AddNewAllCustomersWokspace));
-            CommandViewModel cvNewCustomerModel = new CommandViewModel("New Customer", new RelayCommand(viewModel.AddNewCustomerWorkspace));
-            viewModel.Commands.Add(cvAllCustomerModel);
-            viewModel.Commands.Add(cvNewCustomerModel);
 
             viewModel.RequestClose += delegate
             {

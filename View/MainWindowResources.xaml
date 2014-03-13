@@ -7,7 +7,7 @@
     <DataTemplate x:Key="CommandsTemplate">
         <TextBlock Margin="2,6">
             <Hyperlink Command="{Binding Path=Command}">
-            <TextBlock Text="{Binding Path=DisplayName}" />
+                <TextBlock Text="{Binding Path=DisplayName}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>

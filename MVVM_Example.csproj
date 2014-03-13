@@ -82,9 +82,6 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TabControl.xaml.cs">
-      <DependentUpon>TabControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AllCustomersViewModel.cs" />
     <Compile Include="ViewModel\CommandViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
@@ -122,10 +119,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindowResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

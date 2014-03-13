@@ -56,6 +56,11 @@ namespace MVVM_Example.ViewModel
         public MainWindowViewModel() : base()
         {
             dataProvider = new CustomerDataProvider();
+
+            CommandViewModel cvAllCustomerModel = new CommandViewModel("All Customers", new RelayCommand(AddNewAllCustomersWokspace, AddAllCutomersViewCanExecute));
+            CommandViewModel cvNewCustomerModel = new CommandViewModel("New Customer", new RelayCommand(AddNewCustomerWorkspace));
+            Commands.Add(cvAllCustomerModel);
+            Commands.Add(cvNewCustomerModel);
         }
 
         protected void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -106,6 +111,16 @@ namespace MVVM_Example.ViewModel
             model.CloseCommand = closeCommand;
 
             Workspaces.Add(model);
+        }
+
+        private bool AddAllCutomersViewCanExecute(object sender)
+        {
+            foreach (WorkspaceViewModel model in _workspaces)
+            {
+                if (model is AllCustomersViewModel)
+                    return false;
+            }
+            return true;
         }
 
         public void AddNewCustomerWorkspace(object sender)
