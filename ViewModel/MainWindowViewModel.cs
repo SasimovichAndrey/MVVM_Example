@@ -18,6 +18,7 @@ namespace MVVM_Example.ViewModel
 
         private ObservableCollection<WorkspaceViewModel> _workspaces;
         private ObservableCollection<CommandViewModel> _commands;
+        private CustomerDataProvider dataProvider;
 
         #endregion //Fields
 
@@ -52,8 +53,9 @@ namespace MVVM_Example.ViewModel
 
         #endregion //Properties
 
-        public MainWindowViewModel(String path) : base()
+        public MainWindowViewModel() : base()
         {
+            dataProvider = new CustomerDataProvider();
         }
 
         protected void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -99,8 +101,7 @@ namespace MVVM_Example.ViewModel
 
         public void AddNewAllCustomersWokspace(object sender)
         {
-            CustomerDataProvider provider = new CustomerDataProvider();
-            AllCustomersViewModel model = new AllCustomersViewModel(provider){DisplayName = "All Customers"};
+            AllCustomersViewModel model = new AllCustomersViewModel(dataProvider){DisplayName = "All Customers"};
             RelayCommand closeCommand = new RelayCommand(model.CloseWorkspace);
             model.CloseCommand = closeCommand;
 
