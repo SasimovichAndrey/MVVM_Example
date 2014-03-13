@@ -61,7 +61,29 @@ namespace MVVM_Example.ViewModel
             if (e.NewItems != null && e.NewItems.Count != 0)
             {
                 foreach (WorkspaceViewModel workspace in e.NewItems)
+                {
                     workspace.RequestClose += this.OnWorkspaceRequestClose;
+                    if(workspace is AllCustomersViewModel)
+                    {
+                        foreach (WorkspaceViewModel ws in _workspaces)
+                        {
+                            if (ws is CustomerViewModel)
+                            {
+                                ((CustomerViewModel)ws).SaveAction += ((AllCustomersViewModel)workspace).OnNewCustomerSaveAction;
+                            }
+                        }
+                    }
+                    else if (workspace is CustomerViewModel)
+                    {
+                        foreach (WorkspaceViewModel ws in _workspaces)
+                        {
+                            if (ws is AllCustomersViewModel)
+                            {
+                                ((CustomerViewModel)workspace).SaveAction += ((AllCustomersViewModel)ws).OnNewCustomerSaveAction;
+                            }
+                        }
+                    }
+                }
             }
 
 
@@ -82,20 +104,12 @@ namespace MVVM_Example.ViewModel
             RelayCommand closeCommand = new RelayCommand(model.CloseWorkspace);
             model.CloseCommand = closeCommand;
 
-            foreach (WorkspaceViewModel wsModel in Workspaces)
-            {
-                if (wsModel is CustomerViewModel)
-                {
-                    (wsModel as CustomerViewModel).SaveAction += model.OnNewCustomerSaveAction;
-                }
-            }
-
             Workspaces.Add(model);
         }
 
         public void AddNewCustomerWorkspace(object sender)
         {
-            CustomerViewModel model = new CustomerViewModel(new Customer() { FirstName="Sergei", Email="lalala@mail.kz"}) { DisplayName = "New Customer" };
+            CustomerViewModel model = new CustomerViewModel(new Customer()) { DisplayName = "New Customer" };
             RelayCommand closeCommand = new RelayCommand(model.OnCloseWorkspace);
             model.CloseCommand = closeCommand;
 

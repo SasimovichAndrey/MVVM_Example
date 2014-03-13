@@ -68,7 +68,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="0" Grid.Column="1">
+            <TextBox Grid.Row="1" Grid.Column="1">
                 <TextBox.Text>
                     <Binding Path="LastName">
                         <Binding.ValidationRules>
@@ -77,12 +77,11 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="0" Grid.Column="1">
+            <TextBox Grid.Row="2" Grid.Column="1">
                 <TextBox.Text>
                     <Binding Path="Email">
                         <Binding.ValidationRules>
                             <vr:OneWordValidationRule/>
-                            <vr:EmailValidationRule/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

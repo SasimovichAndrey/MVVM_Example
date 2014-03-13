@@ -14,8 +14,7 @@ namespace MVVM_Example.ViewModel
 
         public AllCustomersViewModel(CustomerDataProvider provider)
         {
-            dataProvider = provider;
-            
+            dataProvider = provider;        
         }
 
         public ObservableCollection<Customer> Customers

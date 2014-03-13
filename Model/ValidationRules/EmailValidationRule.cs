@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace MVVM_Example.Model.ValidationRules
 {
-    public class EmainValidationRule : ValidationRule
+    public class EmailValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {

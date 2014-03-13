@@ -12,9 +12,8 @@ namespace MVVM_Example.Model.ValidationRules
 
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            String pattern = "@\\S*";
+            String pattern = @"^\S*$";
             Regex regex = new Regex(pattern);
-            Match match;
 
             String word = (String)value;
             if(regex.IsMatch(word))
