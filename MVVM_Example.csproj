@@ -61,6 +61,8 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\ValidationRules\EmainValidationRule.cs" />
+    <Compile Include="Model\ValidationRules\OneWordValidationRule.cs" />
     <Compile Include="Service\CustomerDataProvider.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

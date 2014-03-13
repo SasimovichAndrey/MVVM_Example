@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:MVVM_Example.ViewModel"
                     xmlns:vw="clr-namespace:MVVM_Example.View"
-                    xmlns:mdl="clr-namespace:MVVM_Example.Model">
+                    xmlns:mdl="clr-namespace:MVVM_Example.Model"
+                    xmlns:vr="clr-namespace:MVVM_Example.Model.ValidationRules">
     <DataTemplate x:Key="CommandsTemplate">
         <TextBlock Margin="2,6">
             <Hyperlink Command="{Binding Path=Command}">
@@ -21,6 +22,7 @@
             <ContentPresenter Content="{Binding Path=DisplayName}" />
         </DockPanel>
     </DataTemplate>
+    
     <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
         <ItemsControl ItemsSource="{Binding Path=Customers}">
             <ItemsControl.ItemTemplate>
@@ -42,7 +44,6 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>        
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
         <Grid>
             <Grid.RowDefinitions>
@@ -58,9 +59,34 @@
             <Label Grid.Row="0" Grid.Column="0" Content="First Name"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Last Name"/>
             <Label Grid.Row="2" Grid.Column="0" Content="Email"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName}"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Email}"/>
+            <TextBox Grid.Row="0" Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="FirstName">
+                        <Binding.ValidationRules>
+                            <vr:OneWordValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="LastName">
+                        <Binding.ValidationRules>
+                            <vr:OneWordValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="Email">
+                        <Binding.ValidationRules>
+                            <vr:OneWordValidationRule/>
+                            <vr:EmailValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Save" Command="{Binding Path=SaveCommand}" HorizontalAlignment="Center" Width="100"/>
         </Grid>
     </DataTemplate>
