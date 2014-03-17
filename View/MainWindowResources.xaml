@@ -11,6 +11,11 @@
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
+
+    <DataTemplate x:Key="CommandsSystemMenuTemplate">
+        <TextBlock Text="{Binding Path=DisplayName}"/>
+    </DataTemplate>
+
     <DataTemplate x:Key="ClosableTabItemTemplate">
         <DockPanel Width="120">
             <Button
@@ -22,7 +27,7 @@
             <ContentPresenter Content="{Binding Path=DisplayName}" />
         </DockPanel>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
         <ItemsControl ItemsSource="{Binding Path=Customers}">
             <ItemsControl.ItemTemplate>

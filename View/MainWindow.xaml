@@ -19,7 +19,12 @@
                 <MenuItem Header="_Exit" Command="{Binding Path=CloseCommand}" />
             </MenuItem>
             <MenuItem Header="_Edit" />
-            <MenuItem Header="_View" ItemsSource="{Binding Path=Commands}" ItemTemplate="{StaticResource ResourceKey=CommandsTemplate}">
+            <MenuItem Header="_View" ItemsSource="{Binding Path=Commands}" ItemTemplate="{StaticResource ResourceKey=CommandsSystemMenuTemplate}" Command="{Binding Path=Commands.Command}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Command" Value="{Binding Command}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
             <MenuItem Header="_Options" />
             <MenuItem Header="_Help" />
