@@ -78,7 +78,9 @@
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\ValidationRules\EmailValidationRule.cs" />
     <Compile Include="Model\ValidationRules\OneWordValidationRule.cs" />
+    <Compile Include="Service\CustomerDataProcessor.cs" />
     <Compile Include="Service\CustomerDataProvider.cs" />
+    <Compile Include="Service\XmlCustomerDataProcessor.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

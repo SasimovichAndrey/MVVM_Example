@@ -55,7 +55,7 @@ namespace MVVM_Example.ViewModel
 
         public MainWindowViewModel() : base()
         {
-            dataProvider = new CustomerDataProvider();
+            dataProvider = new CustomerDataProvider(new XmlCustomerDataProcessor("d:\\Projects\\.NET\\MVVM_Example\\customers.xml "));
 
             CommandViewModel cvAllCustomerModel = new CommandViewModel("All Customers", new RelayCommand(AddNewAllCustomersWokspace, AddAllCutomersViewCanExecute));
             CommandViewModel cvNewCustomerModel = new CommandViewModel("New Customer", new RelayCommand(AddNewCustomerWorkspace));

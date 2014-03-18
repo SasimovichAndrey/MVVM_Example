@@ -11,15 +11,17 @@ namespace MVVM_Example.Service
     public class CustomerDataProvider
     {
         private ObservableCollection<Customer> customers;
+        private CustomerDataProcessor dataProcessor;
 
-        public CustomerDataProvider()
+        public CustomerDataProvider(CustomerDataProcessor dataProcessor)
         {
             customers = new ObservableCollection<Customer>();
-            
-            // DEBUG!
-            customers.Add(new Customer() { FirstName = "Siarhey", LastName = "Kovalchik", Email = "sk@gmail.by" });
-            customers.Add(new Customer() { FirstName = "Miha", LastName = "Kovalchik", Email = "sk@gmail.by" });
-            customers.Add(new Customer() { FirstName = "Slava", LastName = "Kovalchik", Email = "sk@gmail.by" });
+            List<Customer> loadedCustomers = dataProcessor.LoadCustomers();
+
+            foreach (Customer customer in loadedCustomers)
+            {
+                customers.Add(customer);
+            }
         }
 
         public ObservableCollection<Customer> Customers
