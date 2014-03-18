@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Customers>
+	<Customer FirstName="John" LastName="Krukov" Email="jkrulov@epam.com"/>
+	<Customer FirstName="Jessie" LastName="Spencer" Email="jspencer76@mail.ru"/>
+	<Customer FirstName="Jim" LastName="Gale" Email="jimgale@rambler.ru"/>
+	<Customer FirstName="Gregory" LastName="House" Email="greg19@gmail.com"/>
+</Customers>
